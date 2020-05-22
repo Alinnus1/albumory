@@ -1,0 +1,92 @@
+* {box-sizing: border-box}
+
+#main {
+    display: flex;
+    flex-flow: wrap;
+}
+  
+#main div {
+    font-size: 0;
+    flex: 0 1 calc(100%/4);
+}
+  
+.album img{
+    width: 240px;
+    height: 240px;
+}
+input[type=text] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+input[type=text]:focus{
+    background-color: #ddd;
+    outline: none;
+}
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+.container {
+    padding: 16px;
+  }
+
+.remove{
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+  
+button:hover {
+    opacity:1;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+
+
+  
+@media only screen and (min-width: 240px) {
+    #main div { flex: 0 1 calc(100%/2); }
+}
+  
+@media only screen and (min-width: 480px) {
+    #main div { flex: 0 1 calc(100%/3); }
+}
+  
+@media only screen and (min-width: 720px) {
+    #main div { flex: 0 1 calc(100%/4); }
+}
+  
+@media only screen and (min-width: 960px) {
+    #main div { flex: 0 1 calc(100%/5); }
+}
+  
+@media only screen and (min-width: 1200px) {
+    #main div { flex: 0 1 calc(100%/6); }
+}
+  
+@media only screen and (min-width: 1440px) {
+    #main div { flex: 0 1 calc(100%/7); }
+}
+  
+@media only screen and (min-width: 1680px) {
+    #main div { flex: 0 1 calc(100%/8); }
+}
+  
+@media only screen and (min-width: 1920px) {
+    #main div { flex: 0 1 calc(100%/9); }
+}
