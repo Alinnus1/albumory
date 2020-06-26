@@ -37,6 +37,53 @@
                 <p>Already have an account? <a href="login.html">Log in</a></p>
         </div>
     </form>
+    <div class="container">
+        <button id="addNumbers" >Add numbers</button>
+        <button id="addText" >Add text</button>
+        <button id="redo" >Redo</button>
+        <button id="undo" >Undo</button>
+        <div style="margin:1em 0;">
+          <pre id="text"></pre>
+        </div>
+      </div>
     <script src="scripts/signup.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+          $("#addNumbers").click(function(){
+              CommandManager.execute({
+                execute: function(){
+                  $("#text").append("\n0123456789");
+                },
+                unexecute: function(){
+                  var arr = $("#text").html().split("\n");
+                  var html = arr.slice(0,arr.length-1).join("\n");
+                  $("#text").html(html);
+                }
+              });
+          });
+          $("#addText").click(function(){
+              CommandManager.execute({
+                execute: function(){
+                  $("#text").append("\ntext from command");
+                },
+                unexecute: function(){
+                  var arr = $("#text").html().split("\n");
+                  var html = arr.slice(0,arr.length-1).join("\n");
+                  $("#text").html(html);
+                }
+              });
+          });
+      
+          $("#redo").click(function(){
+            CommandManager.redo();
+          });
+      
+          $("#undo").click(function(){
+            CommandManager.undo();
+          });
+        });
+    </script>
 </body>
 </html>

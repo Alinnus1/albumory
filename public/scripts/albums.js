@@ -1,3 +1,4 @@
+
 if (!localStorage.getItem('rememberMe') && !sessionStorage.getItem('loggedIn')) {
     window.location.replace('login.html');
   } else {
@@ -37,6 +38,7 @@ if (!localStorage.getItem('rememberMe') && !sessionStorage.getItem('loggedIn')) 
   }
 
     async function addAlbum(event){
+        event.preventDefault();
         const imgURL = document.querySelector('#url-input').value;
         let res;
         try {
@@ -68,23 +70,40 @@ if (!localStorage.getItem('rememberMe') && !sessionStorage.getItem('loggedIn')) 
         
     });
 
+    document.addEventListener('contextmenu', function (event){
+      event.preventDefault();
+      alert('nu ai de ce sa folosesti click dreapta');
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.code == 'KeyS' && (event.ctrlKey || event.metaKey)) {
+        event.preventDefault();
+        Swal.fire('Nu ai de ce sa salvezi')
+      }
+      if (event.code == 'KeyA' && (event.ctrlKey || event.metaKey)) {
+        addAlbum(event);
+      }
+    });
+
+
     getUserAlbums();
 
-    
+    var removeAlbumbuttons = document.getElementsByClassName('remove')
+    console.log(removeAlbumbuttons)
     
     async function removeAlbum(event){
-        await fetch('http://localhost:3000/api/albums',{
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            userID,
-            albumID
-          })
-        });
-        getUserAlbums();
-    }
+      await fetch('http://localhost:3000/api/albums',{
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userID,
+          albumID
+        })
+      });
+      getUserAlbums();
+  }
     
     
 }

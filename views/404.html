@@ -7,6 +7,7 @@
     <title>404</title>
 </head>
 <body>
+    
     <figure>
         <div class="sad-mac"></div>
         <figcaption>
@@ -29,5 +30,51 @@
             <span class="d"></span>
         </figcaption>
     </figure>
+    <div class="custom-cm">
+        <div class="custom-cm__item" id="login">Login in</div>
+        <div class="custom-cm__item" id="sign">Sign up</div>
+        <div class="custom-cm__item" id="culoare">New Background Color</div>
+      </div>
+    <script type="application/javascript">
+        const cm = document.querySelector(".custom-cm");
+
+        function showContextMenu(show = true) {
+        cm.style.display = show ? "block" : "none";
+        }
+
+        window.addEventListener("contextmenu", e => {
+        e.preventDefault();
+
+        showContextMenu();
+        cm.style.top =
+            e.y + cm.offsetHeight > window.innerHeight
+            ? window.innerHeight - cm.offsetHeight
+            : e.y + "px";
+        cm.style.left =
+            e.x + cm.offsetWidth > window.innerWidth
+            ? window.innerWidth - cm.offsetWidth
+            : e.x+ "px";
+        });
+
+        const login= document.getElementById("login");
+        const sign= document.getElementById("sign");
+        const culoare=document.getElementById("culoare");
+        
+
+        window.addEventListener("click", (event) => {
+            
+            let x= Math.random()*256
+            let y= Math.random()*256;
+            let z= Math.random()*256;
+            if(login===event.target)
+                window.location.replace('login');
+            if(sign===event.target)
+                window.location.replace('signup');
+            if(culoare===event.target)
+                document.querySelector("body").style.background= "rgb("+x+","+y+","+z+")";
+            showContextMenu(false);
+        });
+        
+    </script>
 </body>
 </html>

@@ -2,6 +2,7 @@ const express = require('express');
 const uuid = require('uuid');
 const albumsData = require('../../Albums');
 const router=express.Router();
+const Swal = require('sweetalert2')
 
 let albums;
 

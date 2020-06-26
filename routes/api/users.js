@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 const userData = require('../../Users');
 const router = express.Router();
-
+const Swal=require('sweetalert2');
 
 const salt = 10;
 let users;
@@ -51,7 +51,7 @@ async function readUsers() {
     router.post('/user/id', (req, res) => {
         const found = users.some(user => user.email === req.body.email);
         if (found) {
-          const user = users.filter(user => user.email === req.body.email)[0];
+          const user = users.filter(user => user.email === req.body.email)[0];// find
           if (bcrypt.compareSync(req.body.password, user.passHash)) {
             res.json({
               found: true,
